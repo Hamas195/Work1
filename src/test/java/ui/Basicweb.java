@@ -11,13 +11,17 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-
+import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class Basicweb {
 	public static String browser = "chrome";
@@ -37,22 +41,32 @@ public class Basicweb {
 		System.out.println(currurl);
 		Thread.sleep(1000);
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		Actions actions = new Actions(driver);
 
 		WebElement emailField = driver.findElement(By.id("email"));
-		emailField.sendKeys("uitesting090@gmail.com");
+		emailField.sendKeys("seseh32525@exclussi.com");
 		Thread.sleep(1000);
 
 		WebElement passwordField = driver.findElement(By.id("password"));
-		passwordField.sendKeys("Rent123$");
+		passwordField.sendKeys("Rent123!");
 		Thread.sleep(1000);
 
 		WebElement signInButton = driver.findElement(By.xpath("/html/body/main/div[1]/div/form/button"));
 		signInButton.click();
+		Thread.sleep(6000);
 
-		WebElement addPropertyButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-				"//a[@class='data-[disabled=true]:pointer-events-none no-underline flex h-[40px] items-center justify-center overflow-hidden rounded-sm px-4 font-Manrope font-medium transition-colors duration-200 focus:outline-none focus:shadow-focus data-[disabled=true]:cursor-not-allowed border-none bg-green-200 text-white hover:bg-green-300 data-[disabled=true]:bg-green-100']")));
+		WebElement addPropertyButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//a[@href='properties/add' and contains(text(), 'Add Property')]")));
+
+		// WebElement addPropertyButton =
+		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+		// "//a[@class='data-[disabled=true]:pointer-events-none no-underline flex
+		// h-[40px] items-center justify-center overflow-hidden rounded-sm px-4
+		// font-Manrope font-medium transition-colors duration-200 focus:outline-none
+		// focus:shadow-focus data-[disabled=true]:cursor-not-allowed border-none
+		// bg-green-200 text-white hover:bg-green-300
+		// data-[disabled=true]:bg-green-100']")));
 
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addPropertyButton);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", addPropertyButton);
@@ -77,13 +91,13 @@ public class Basicweb {
 		Thread.sleep(1000);
 
 		WebElement dropdownOption = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='pac-item'])[2]")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='pac-item'])[1]")));
 		dropdownOption.click();
 		Thread.sleep(2000);
 
 		WebElement Next1 = driver.findElement(By.xpath(" //button[@type='submit']"));
 		Next1.click();
-		Thread.sleep(8000);
+		Thread.sleep(6000);
 
 		WebElement dropdown = driver.findElement(By.id("number-of-beds"));
 		dropdown.click();
@@ -152,9 +166,8 @@ public class Basicweb {
 
 		Robot robot = new Robot();
 
-		StringSelection filePath = new StringSelection("C:\\Users\\hamas.sohail\\Downloads\\Issues.png");
+		StringSelection filePath = new StringSelection("C:\\Users\\hamas.sohail\\Downloads\\house.jpeg");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
-
 		robot.keyPress(KeyEvent.VK_CONTROL);
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyRelease(KeyEvent.VK_V);
@@ -198,9 +211,9 @@ public class Basicweb {
 		WebElement targetElement = driver.findElement(By.xpath(
 				"//*[contains(@class, 'pkg-flex pkg-h-[40px] pkg-items-center pkg-justify-center pkg-overflow-hidden pkg-rounded-sm pkg-px-4 pkg-font-Manrope pkg-text-base pkg-font-medium pkg-transition-all pkg-duration-200 focus:pkg-outline-none focus:pkg-shadow-focus disabled:pkg-cursor-not-allowed pkg-border pkg-border-green-200 pkg-bg-green-200 pkg-text-white hover:pkg-bg-green-300 hover:pkg-border-green-300 disabled:pkg-border-green-100 disabled:pkg-bg-green-100')]"));
 		targetElement.click();
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 
-		WebElement Next6 = driver.findElement(By.xpath(" //button[@type='submit']"));
+		WebElement Next6 = driver.findElement(By.xpath(" /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/form[1]/div[3]/button[1]"));
 		Next6.click();
 		Thread.sleep(2000);
 
@@ -230,7 +243,7 @@ public class Basicweb {
 
 		Lease.sendKeys(Keys.ARROW_DOWN); // Moves to the first option
 		Lease.sendKeys(Keys.ENTER);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		WebElement Next7 = driver.findElement(By.xpath(" //button[@type='submit']"));
 		Next7.click();
@@ -313,7 +326,16 @@ public class Basicweb {
 		WebElement Next12 = driver.findElement(By.xpath("//button[@type='submit']"));
 		Next12.click();
 		Thread.sleep(5000);
+
+		WebElement logout = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Logout']")));
+		Thread.sleep(3000);
 		driver.close();
+		Thread.sleep(3000);
+	
+	        
+
+
 	}
 
 }
