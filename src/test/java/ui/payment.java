@@ -82,7 +82,7 @@ public class payment {
 			driver.switchTo().defaultContent();
 			driver.switchTo().frame(iframe);
 
-			// Check for Card Number
+			
 			List<WebElement> cardNumber = driver.findElements(By.cssSelector("input[name='number']"));
 			if (!cardNumber.isEmpty()) {
 				cardNumber.get(0).sendKeys("5454545454545454");
@@ -110,9 +110,14 @@ public class payment {
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 		Thread.sleep(2000);
 
-		WebElement payment = driver.findElement(By.xpath(
-				"//button[@type='submit']"));
+		WebElement payment = driver.findElement(By.xpath("//button[@type='submit']"));
 		payment.click();
 		Thread.sleep(5000);
+		WebElement logout = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Logout']")));
+		logout.click();
+		Thread.sleep(3000);
+		driver.close();
+		Thread.sleep(4000);
 	}
 }

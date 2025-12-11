@@ -67,6 +67,12 @@ public class Approvalss {
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Approve']")));
 		approval.click();
 		Thread.sleep(5000);
+		WebElement logout = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Logout']")));
+		logout.click();
+		Thread.sleep(3000);
+		driver.close();
+		Thread.sleep(4000);
 
 	}
 

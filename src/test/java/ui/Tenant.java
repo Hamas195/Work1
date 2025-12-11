@@ -24,20 +24,18 @@ import java.time.Duration;
 import java.awt.*;
 
 public class Tenant {
-	
-	
-	
+
 	public static String browser = "chrome";
 	public static WebDriver driver;
-	
+
 	public static void main(String[] args) throws InterruptedException, AWTException {
-		
+
 		if (browser.equals("chrome")) {
 			driver = new ChromeDriver();
 		} else if (browser.equals("Firefox")) {
 			driver = new FirefoxDriver();
 		}
-		
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int centerX = screenSize.width / 2;
@@ -100,7 +98,7 @@ public class Tenant {
 				"/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]"));
 		calanderdrop.click();
 		Thread.sleep(1000);
-		WebElement date = driver.findElement(By.xpath("//div[contains(text(),'29')]"));
+		WebElement date = driver.findElement(By.xpath("//div[contains(text(),'30')]"));
 		date.click();
 		WebElement lease = driver.findElement(By.xpath(
 				"/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/form[1]/div[2]/div[1]/div[1]/span[1]/input[1]"));
@@ -112,38 +110,14 @@ public class Tenant {
 		WebElement Next13 = driver.findElement(By.xpath(" //button[@type='submit']"));
 		Next13.click();
 		Thread.sleep(2000);
+
+		WebElement logout = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Logout']")));
+		logout.click();
+		Thread.sleep(3000);
+		driver.close();
+		Thread.sleep(4000);
 	}
 }
 
-/*
- * WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
- * Actions actions = new Actions(driver);
- * 
- * WebElement emailField = driver.findElement(By.id("email"));
- * emailField.sendKeys("hamassohail222@gmail.com"); Thread.sleep(1000);
- * 
- * WebElement passwordField = driver.findElement(By.id("password"));
- * passwordField.sendKeys("Rent123!"); Thread.sleep(1000); WebElement
- * signInButton =
- * driver.findElement(By.xpath("/html/body/main/div[1]/div/form/button"));
- * signInButton.click(); Thread.sleep(4000); WebElement address =
- * wait.until(ExpectedConditions.elementToBeClickable(By.id("home-address")));
- * address.clear(); address.sendKeys("Newyork"); Thread.sleep(2000);
- * 
- * WebElement home_dropdown = wait
- * .until(ExpectedConditions.elementToBeClickable(By.xpath(
- * "(//div[@class='pac-item'])[1]"))); home_dropdown.click();
- * Thread.sleep(2000);
- * 
- * // JavascriptExecutor js = (JavascriptExecutor) driver; //
- * js.executeScript("window.scrollBy(0,500)");
- * 
- * // WebElement Property1 = driver.findElement(By.className("text-sm-manrope
- * -mt-1 // truncate text-gray-300")); // Property1.click();
- * 
- * actions.moveByOffset(500, 300).click().perform(); Thread.sleep(2000);
- * 
- * WebElement Property1 = driver.findElement(By.
- * className("text-sm-manrope -mt-1 truncate text-gray-300"));
- * Property1.click(); Thread.sleep(2000);
- */
+

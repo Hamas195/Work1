@@ -1,4 +1,5 @@
 package ui;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.awt.*;
+
 public class Application {
 	public static String browser = "chrome";
 	public static WebDriver driver;
@@ -52,24 +54,28 @@ public class Application {
 		WebElement signInButton = driver.findElement(By.xpath("/html/body/main/div[1]/div/form/button"));
 		signInButton.click();
 		Thread.sleep(6000);
-		WebElement application = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/aside[1]/div[1]/nav[1]/ul[1]/li[4]/a[1]/span[1]")));
+		WebElement application = wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("/html[1]/body[1]/div[1]/aside[1]/div[1]/nav[1]/ul[1]/li[4]/a[1]/span[1]")));
 		Thread.sleep(3000);
 		application.click();
 		Thread.sleep(6000);
-		
-		
-		WebElement clickpro = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/a[1]/span[1]"));
+
+		WebElement clickpro = driver.findElement(By.xpath(
+				"/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[4]/div[1]/table[1]/tbody[1]/tr[1]/td[1]/a[1]/span[1]"));
 		clickpro.click();
 		Thread.sleep(3000);
 
-		WebElement screen = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/button[1]"));
+		WebElement screen = driver
+				.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/button[1]"));
 		screen.click();
 		Thread.sleep(3000);
-		
-	}
-		
-		
-}
-		
-		
+		WebElement logout = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Logout']")));
+		logout.click();
+		Thread.sleep(3000);
+		driver.close();
+		Thread.sleep(4000);
 
+	}
+
+}

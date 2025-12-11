@@ -67,7 +67,12 @@ public class Approval {
 				.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/button[1]"));
 		report.click();
 		Thread.sleep(9000);
-		
+		WebElement logout = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Logout']")));
+		logout.click();
+		Thread.sleep(3000);
+		driver.close();
+		Thread.sleep(4000);
 
 	}
 

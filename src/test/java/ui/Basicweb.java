@@ -70,7 +70,7 @@ public class Basicweb {
 
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addPropertyButton);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", addPropertyButton);
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 
 		WebElement apartmentButton = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Apartment']")));
@@ -162,7 +162,7 @@ public class Basicweb {
 		WebElement image = driver
 				.findElement(By.xpath("//label[@for='featured-image-upload']//p[normalize-space()='Upload']"));
 		image.click();
-		Thread.sleep(2000); // Wait for file dialog to appear
+		Thread.sleep(5000); // Wait for file dialog to appear
 
 		Robot robot = new Robot();
 
@@ -329,10 +329,18 @@ public class Basicweb {
 
 		WebElement logout = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Logout']")));
+		logout.click();
 		Thread.sleep(3000);
 		driver.close();
-		Thread.sleep(3000);
-	
+		Thread.sleep(4000);
+		
+		
+		Tenant.main(args);
+		Application.main(args);
+		payment.main(args);
+		Approval.main(args);
+		Approvalss.main(args);
+
 	        
 
 
